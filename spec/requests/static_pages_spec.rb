@@ -11,6 +11,7 @@ def CheckTitle(checkpage, title)
 end
 
 describe "StaticPages" do
+
    describe "Home page" do
      homepage = '/static_pages/home'
      it 'should have the title "Home"' do
@@ -19,6 +20,16 @@ describe "StaticPages" do
     it "should have the content 'Twitter'" do
       CheckContent(homepage,'Twitter')
     end
+  end
+  
+  describe "Contact page" do
+     contactpage = '/static_pages/contact'
+     it 'should have the title "Contact"' do
+       CheckTitle(contactpage,'Contact')
+     end
+     it 'should have the content "Contact"' do
+       CheckContent(contactpage,'Contact') 
+     end
   end
   
    describe "Help page" do
