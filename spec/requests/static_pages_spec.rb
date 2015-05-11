@@ -1,54 +1,34 @@
 require 'spec_helper'
 
-def CheckContent(checkpage, content)
-   visit checkpage
-   return expect(page).to have_content(content)
-end
+describe "Static pages" do
 
-def CheckTitle(checkpage, title)
-   visit checkpage
-   return expect(page).to have_title(title)
-end
+  subject { page }
 
-describe "StaticPages" do
+  describe "Home page" do
+    before { visit root_path }
 
-   describe "Home page" do
-     homepage = '/static_pages/home'
-     it 'should have the title "Home"' do
-       CheckTitle(homepage, 'Home')
-     end
-    it "should have the content 'Twitter'" do
-      CheckContent(homepage,'Twitter')
-    end
+    it { should have_content('Twitter') }
+    it { should have_title(full_title('Home')) }
   end
-  
+
+  describe "Help page" do
+    before { visit help_path }
+
+    it { should have_content('Help') }
+    it { should have_title(full_title('Help')) }
+  end
+
+  describe "About page" do
+    before { visit about_path }
+
+    it { should have_content('About') }
+    it { should have_title(full_title('About')) }
+  end
+
   describe "Contact page" do
-     contactpage = '/static_pages/contact'
-     it 'should have the title "Contact"' do
-       CheckTitle(contactpage,'Contact')
-     end
-     it 'should have the content "Contact"' do
-       CheckContent(contactpage,'Contact') 
-     end
+    before { visit contact_path }
+
+    it { should have_content('Contact') }
+    it { should have_title(full_title('Contact')) }
   end
-  
-   describe "Help page" do
-     helppage = '/static_pages/help'
-     it "should have the content 'Help'" do
-       CheckContent(helppage,'Help')
-     end
-     it "should have title 'Help'" do
-       CheckTitle(helppage,'Help')
-     end
-   end
-   
-   describe "About page" do
-     aboutpage = '/static_pages/about'
-     it "should have the content 'About Us'" do
-       CheckContent(aboutpage,'About Us')
-     end
-     it "should have the Title 'About'" do
-       CheckTitle(aboutpage,'About')
-     end
-   end
 end
