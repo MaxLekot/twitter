@@ -94,6 +94,7 @@ describe User do
 
     describe "with valid password" do
       it { should eq found_user.authenticate(@user.password) }
+   
     end
 
     describe "with invalid password" do
@@ -101,6 +102,7 @@ describe User do
 
       it { should_not eq user_for_invalid_password }
       specify { expect(user_for_invalid_password).to be_false }
+ 
     end
   end
 end
