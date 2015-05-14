@@ -2,6 +2,7 @@ class UsersController < ApplicationController
    before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
    before_action :correct_user,   only: [:edit, :update]
    before_action :admin_user,     only: :destroy
+
    
    def index
       @users = User.paginate(page: params[:page])
@@ -12,10 +13,17 @@ class UsersController < ApplicationController
    end
    
   def new
+     if signed_in?
+       redirect_to root_url
+      else
      @user = User.new
+     end
   end
   
    def create
+    if signed_in?
+       redirect_to root_url
+    else
     @user = User.new(user_params)
     if @user.save
      sign_in @user
@@ -25,7 +33,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+  end
   def edit
   #  @user = User.find(params[:id])
   end

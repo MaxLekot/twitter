@@ -13,3 +13,9 @@ def sign_in(user, options={})
     click_button "Sign in"
   end
 end
+
+# def sign_out()
+  # cookies[:remember_token] = ""
+  # current_user=nil
+  # @current_user=nil
+# end
